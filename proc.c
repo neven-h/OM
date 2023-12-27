@@ -1,3 +1,7 @@
+// Noa Even 208576256
+// implemented here the cps call by implementation of all the syscalls
+
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -19,6 +23,35 @@ extern void forkret(void);
 extern void trapret(void);
 
 static void wakeup1(void *chan);
+
+//current proceses status
+int cps156() 
+{
+    struct proc *p;
+
+     // that we can make interrupts in the processor
+    sti(); 
+
+    acquire(&ptable.lock);
+    cprintf("name \t pid \t state \t\t ppid \n");
+    //There is a drop in ranks as requested by the maman 11
+    // Loop to search process with pid
+
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+
+        int ppid = (p->pid == 1) ? 0: p->parent->pid ; 
+
+        if (p->state == SLEEPING )
+            cprintf("%s \t %d  \t SLEEPING \t %d \n ", p->name, p->pid, ppid) ;
+
+        else if (p->state == RUNNING )
+            cprintf("%s \t %d  \t RUNNING \t %d \n ", p->name, p->pid, ppid) ;
+    }
+
+    release(&ptable.lock);
+
+    return 22;
+}
 
 void
 pinit(void)
@@ -80,7 +113,7 @@ allocproc(void)
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == UNUSED)
-      goto found;
+      goto found;cps
 
   release(&ptable.lock);
   return 0;
@@ -451,6 +484,7 @@ sleep(void *chan, struct spinlock *lk)
   }
 }
 
+
 //PAGEBREAK!
 // Wake up all processes sleeping on chan.
 // The ptable lock must be held.
@@ -532,3 +566,4 @@ procdump(void)
     cprintf("\n");
   }
 }
+
