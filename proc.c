@@ -113,7 +113,7 @@ allocproc(void)
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == UNUSED)
-      goto found;cps
+      goto found;
 
   release(&ptable.lock);
   return 0;
