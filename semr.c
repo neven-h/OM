@@ -45,9 +45,8 @@ void *threadfunction(void *args){
 	
 	sem_down();
 	printf("I Hate\n");
- 	for (int i = 0; i < 100000; i++) {
-  	glob‫_‬val++; 
-}
+ 	for (int i = 0; i < 100000; i++)
+	glob_val++ ;
  printf("I Love\n");
 	sem_up();
 	return NULL;
