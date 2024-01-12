@@ -1,7 +1,3 @@
-// Noa Even 208576256
-// Defining and calling functions for variables
-
-
 struct stat;
 struct rtcdate;
 
@@ -27,8 +23,6 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int cps156(void);
-
 
 // ulib.c
 int stat(const char*, struct stat*);

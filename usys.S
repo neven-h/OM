@@ -1,6 +1,3 @@
-// Noa Even 208576256
-// Define new SYSCALLs here, SYSCALLCPS156 sets %eax register to bewhich is sys_cps156.
-
 #include "syscall.h"
 #include "traps.h"
 
@@ -13,8 +10,7 @@
     ret
 
 // !!!! Adding "new" "SYSCALLfork(fork)" instead of SYSCALL(fork) 
-//  without changing syscall.h !!!
-
+//  without changing syscall.h !!! 1 is SYSCALL number, look in syscall.c
 #define SYSCALLFORK(name) \
   .globl name; \
   name: \
@@ -22,14 +18,7 @@
     int $T_SYSCALL; \
     ret
 
-
 // You need to add your new SYSCALL by the same way(here is a good place)
-#define SYSCALLCPS156(name) \
-  .globl name; \
-  name: \
-    movl $22, %eax; \
-    int $T_SYSCALL; \
-    ret
 
 
 SYSCALLFORK(fork) //instead of SYSCALL(fork) !!!
@@ -54,6 +43,3 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
-
-SYSCALLCPS156(cps156)
-

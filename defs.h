@@ -1,7 +1,3 @@
-// Noa Even 208576256
-// Defining and calling functions for variables
-
-
 struct buf;
 struct context;
 struct file;
@@ -124,7 +120,6 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int             cps156(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

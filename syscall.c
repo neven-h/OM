@@ -1,6 +1,3 @@
-// Noa Even 208576256
-// I made 2 changes to the file
-
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -106,7 +103,6 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_cps156(void);
 
 static int (*syscalls[])(void) = {
 // Adding "new" "SYSCALLfork(fork)" without changing syscall.h
@@ -131,7 +127,6 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[22] 	sys_cps156,
 };
 
 void

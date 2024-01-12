@@ -1,8 +1,3 @@
-// Noa Even 208576256
-// I called the sys_cps156 file to call the cps() defined in the proc file.
-
-
-
 #include "types.h"
 #include "x86.h"
 #include "defs.h"
@@ -93,9 +88,4 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
-}
-
-int sys_cps156(void)
-{
-  return cps156();
 }
