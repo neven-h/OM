@@ -103,10 +103,20 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_mount(void);
+extern int sys_umount(void);
+extern int sys_printmounts(void);
+extern int sys_printdevices(void);
+extern int sys_unshare(void);
+extern int sys_usleep(void);
+extern int sys_ioctl(void);
+extern int sys_getppid(void);
+extern int sys_getcpu(void);
+extern int sys_getmem(void);
+extern int sys_kmemtest(void);
 
 static int (*syscalls[])(void) = {
-// Adding "new" "SYSCALLfork(fork)" without changing syscall.h
-[1]    sys_fork, //originally [SYS_fork]    sys_fork, 1 instead of SYS_fork
+[SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
 [SYS_wait]    sys_wait,
 [SYS_pipe]    sys_pipe,
@@ -127,6 +137,17 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_mount] sys_mount,
+[SYS_umount] sys_umount,
+[SYS_printmounts] sys_printmounts,
+[SYS_printdevices] sys_printdevices,
+[SYS_unshare] sys_unshare,
+[SYS_usleep] sys_usleep,
+[SYS_ioctl] sys_ioctl,
+[SYS_getppid] sys_getppid,
+[SYS_getcpu] sys_getcpu,
+[SYS_getmem] sys_getmem,
+[SYS_kmemtest] sys_kmemtest,
 };
 
 void
@@ -140,7 +161,7 @@ syscall(void)
     curproc->tf->eax = syscalls[num]();
   } else {
     cprintf("%d %s: unknown sys call %d\n",
-            curproc->pid, curproc->name, num);
+            curproc->ns_pid, curproc->name, num);
     curproc->tf->eax = -1;
   }
 }

@@ -1,6 +1,5 @@
 // System call numbers
-
-//#define SYS_fork    1 // "new" "SYSCALLfork(fork)" without changing syscall.h
+#define SYS_fork    1
 #define SYS_exit    2
 #define SYS_wait    3
 #define SYS_pipe    4
@@ -21,3 +20,14 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
+#define SYS_mount  22
+#define SYS_umount  23
+#define SYS_printmounts  24
+#define SYS_printdevices  25
+#define SYS_unshare 26
+#define SYS_usleep 27
+#define SYS_ioctl 28
+#define SYS_getppid 29
+#define SYS_getcpu 30
+#define SYS_getmem 31
+#define SYS_kmemtest 32
